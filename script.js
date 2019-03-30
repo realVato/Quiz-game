@@ -15,7 +15,7 @@
 
  4. Select one random question and log it on the console,
  together with the possible answers
- (each question should havea a number)
+ (each question should have a number)
  (Hint: Write a method for the question objects for this task).
 
  5. Use the 'prompt' function to ask the user for the correct 
@@ -31,3 +31,32 @@
  and doesnt interfere with the other programmers code.
 
 */
+
+
+function Question(question, answers, correctAnswerNO) {
+
+    this.question = question;
+    this.answers = answers;
+    this.correctAnswerNO = correctAnswerNO;
+}
+
+
+
+Question.prototype.randomElement = function () {
+    
+    return ((this.question[Math.floor(Math.random() * this.question.length)]));
+    
+
+}
+
+var quiz = new Question(
+
+    [   
+        'Is JS a good language?',
+        'Is JS fun?',
+        'Is earth flat?'
+    ]
+    
+    );
+
+console.log(quiz.randomElement());
