@@ -44,10 +44,22 @@ function Question(question, answers, correctAnswerNO) {
 
 Question.prototype.randomElement = function () {
     
-    return ((this.question[Math.floor(Math.random() * this.question.length)]));
-    
+   var x = this.question[Math.floor(Math.random() * this.question.length)];
+   console.log(x);
+   if (x === this.question[0]) {
+       console.log(this.answers[0][0]);
+       console.log(this.answers[0][1]);
+   } else if (x === this.question[1]) {
+       console.log(this.answers[1][0]);
+       console.log(this.answers[1][1]);
+   } else {
+       console.log(this.answers[2][0]);
+       console.log(this.answers[2][1]);
+   }
 
 }
+
+
 
 var quiz = new Question(
 
@@ -55,8 +67,31 @@ var quiz = new Question(
         'Is JS a good language?',
         'Is JS fun?',
         'Is earth flat?'
+    ],
+    [
+        [   
+            '0: It\'s very good!',
+            '1: There are better ones..'
+        ],
+        [   
+            '0: It\'s very fun!',
+            '1: It\'s hard!'
+        ],
+        [   
+            '0: No.',
+            '1: No.'
+        ]
+    ],
+    [
+        0,
+        1
     ]
     
     );
 
-console.log(quiz.randomElement());
+
+quiz.randomElement();
+
+
+
+
