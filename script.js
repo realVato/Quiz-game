@@ -32,7 +32,6 @@
 
 */
 
-
 function Question(question, answers, correctAnswerNO) {
 
     this.question = question;
@@ -40,26 +39,39 @@ function Question(question, answers, correctAnswerNO) {
     this.correctAnswerNO = correctAnswerNO;
 }
 
-
-
 Question.prototype.randomElement = function () {
     
-   var x = this.question[Math.floor(Math.random() * this.question.length)];
-   console.log(x);
-   if (x === this.question[0]) {
-       console.log(this.answers[0][0]);
-       console.log(this.answers[0][1]);
-   } else if (x === this.question[1]) {
-       console.log(this.answers[1][0]);
-       console.log(this.answers[1][1]);
-   } else {
-       console.log(this.answers[2][0]);
-       console.log(this.answers[2][1]);
-   }
+    var randomQuestion = this.question[Math.floor(Math.random() * this.question.length)];
+    
+    console.log(randomQuestion);
 
+    if (randomQuestion === this.question[0]) {
+        console.log(this.answers[0][0]);
+        console.log(this.answers[0][1]);
+        this.checkAnswer();
+        
+    } else if (randomQuestion === this.question[1]) {
+        console.log(this.answers[1][0]);
+        console.log(this.answers[1][1]); 
+        this.checkAnswer();
+        
+    } else {
+        console.log(this.answers[2][0]);
+        console.log(this.answers[2][1]);
+        this.checkAnswer();
+    }
 }
 
+Question.prototype.checkAnswer = function() {
+        var userInput;
 
+        userInput = prompt('answer');
+        if (userInput == this.correctAnswerNO[0]) {
+            console.log('correct');
+        } else {
+            console.log('incorrect');
+        }
+    }
 
 var quiz = new Question(
 
@@ -83,15 +95,10 @@ var quiz = new Question(
         ]
     ],
     [
-        0,
-        1
+        '0',
+        '1'
     ]
     
     );
 
-
 quiz.randomElement();
-
-
-
-
