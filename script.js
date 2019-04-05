@@ -30,6 +30,20 @@
  to use in their code. So make sure that all the code is private
  and doesnt interfere with the other programmers code.
 
+//EXPERT LEVEL
+
+8. After displaying the result, display the next random question, so that
+the game never ends.
+
+9. Task 8 - the game literally never ends.
+Include the option to quite the game by typing 'exit' instead of answer.
+In this case, dont call the function from task 8.
+
+10. Track the user's score to make the game more fun. Each time
+an answer is correct, add 1 point to the score.
+
+11. Display the score in the console. (Yet another method for this).
+
 */
 
 function Question(question, answers, correctAnswerNO) {
@@ -68,8 +82,17 @@ Question.prototype.checkAnswer = function() {
         userInput = prompt('answer');
         if (userInput == this.correctAnswerNO[0]) {
             console.log('correct');
+            console.log('')
+            console.log('--------------------------------')
+            console.log('')
+            quiz.randomElement();
+
         } else {
-            console.log('incorrect');
+            console.log('incorrect, try again');
+            console.log('')
+            console.log('--------------------------------')
+            console.log('')
+            quiz.randomElement();
         }
     }
 
