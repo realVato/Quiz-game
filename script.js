@@ -36,7 +36,7 @@
 the game never ends.
 
 9. Task 8 - the game literally never ends.
-Include the option to quite the game by typing 'exit' instead of answer.
+Include the option to quit the game by typing 'exit' instead of answer.
 In this case, dont call the function from task 8.
 
 10. Track the user's score to make the game more fun. Each time
@@ -87,12 +87,17 @@ Question.prototype.checkAnswer = function() {
             console.log('')
             quiz.randomElement();
 
-        } else {
+        } else if (userInput == this.correctAnswerNO[1]) {
             console.log('incorrect, try again');
-            console.log('')
-            console.log('--------------------------------')
-            console.log('')
+            console.log('');
+            console.log('--------------------------------');
+            console.log('');
             quiz.randomElement();
+
+        } else if (userInput == 'exit') {
+            console.log('');
+            console.log('Game ended.');
+            
         }
     }
 
@@ -119,7 +124,7 @@ var quiz = new Question(
     ],
     [
         '0',
-        '1'
+        '1',
     ]
     
     );
