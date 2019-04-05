@@ -45,6 +45,7 @@ an answer is correct, add 1 point to the score.
 11. Display the score in the console. (Yet another method for this).
 
 */
+var score = 0;
 
 function Question(question, answers, correctAnswerNO) {
 
@@ -78,26 +79,30 @@ Question.prototype.randomElement = function () {
 
 Question.prototype.checkAnswer = function() {
         var userInput;
+        
 
         userInput = prompt('answer');
         if (userInput == this.correctAnswerNO[0]) {
+            
+            score++;
             console.log('correct');
-            console.log('')
-            console.log('--------------------------------')
+            console.log('Your current score is:' + score);
+            console.log('--------------------------------');
             console.log('')
             quiz.randomElement();
 
         } else if (userInput == this.correctAnswerNO[1]) {
             console.log('incorrect, try again');
-            console.log('');
+            console.log('Your current score is:' + score);
             console.log('--------------------------------');
             console.log('');
             quiz.randomElement();
 
         } else if (userInput == 'exit') {
-            console.log('');
+            console.log('Your final score is:' + score);
             console.log('Game ended.');
-            
+        } else {
+            console.log('Please submit an answer');
         }
     }
 
