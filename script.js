@@ -1,92 +1,58 @@
-(function(){
+(function() {
     var score = 0;
 
-    function Question(question, answers, correctAnswerNO) {
-    
+    function Question(question, answer, correctAnswer) {
         this.question = question;
-        this.answers = answers;
-        this.correctAnswerNO = correctAnswerNO;
-    }
-    
-    Question.prototype.randomElement = function () {
-        
-        var randomQuestion = this.question[Math.floor(Math.random() * this.question.length)];
-        
-        console.log(randomQuestion);
-    
-        if (randomQuestion === this.question[0]) {
-            console.log(this.answers[0][0]);
-            console.log(this.answers[0][1]);
-            this.checkAnswer();
-            
-        } else if (randomQuestion === this.question[1]) {
-            console.log(this.answers[1][0]);
-            console.log(this.answers[1][1]); 
-            this.checkAnswer();
-            
+        this.answer = answer;
+        this.correctAnswer = correctAnswer;
+    };
+
+    Question.prototype.displayQuestion = function() {
+        console.log(this.question);
+
+        for(var i = 0; i < this.answer.length; i++) {
+            console.log(i + ': ' + this.answer[i]);
+        }
+    };
+
+    Question.prototype.checkAnswer = function(answer) {
+        if (answer == this.correctAnswer) {
+            score++;
+            console.log('---------------------------------');
+            console.log('Correct');
+            console.log('---------------------------------');
+            console.log('Your score: ' + score);
+            console.log('---------------------------------');
+            nextQuestion();
+        } else if (answer === 'exit') {
+            console.log('---------------------------------');
+            console.log('Game finish.')
         } else {
-            console.log(this.answers[2][0]);
-            console.log(this.answers[2][1]);
-            this.checkAnswer();
+            score = 0;
+            console.log('---------------------------------');
+            console.log('Incorrect');
+            console.log('---------------------------------');
+            console.log('Your score: ' + score);
+            console.log('---------------------------------');
+            nextQuestion();
         }
+    };
+
+    var q1 = new Question('Is JavaScript a powerful language?', ['Yes', 'No'], 0);
+    var q2 = new Question('Is Keanu Reeves amazing?', ['Yes', 'No', 'Can\'t say'], 0);
+    var q3 = new Question('How to be amazing just like Keanu Reeves?', ['Be tinder',
+    'Be aggressive', 'Be tinder aggressive',
+    'Be tinder aggressive and humble'], 3);
+
+    var questions = [q1, q2, q3];
+
+    nextQuestion();
+
+    function nextQuestion() {
+        var randomQuestion = Math.floor(Math.random() * questions.length);
+        questions[randomQuestion].displayQuestion();
+        answer = prompt('Answer:  | type \'exit\' to finish the game');
+        questions[randomQuestion].checkAnswer(answer);
     }
-    
-    Question.prototype.checkAnswer = function() {
-            var userInput;
-            
-    
-            userInput = prompt('answer');
-            if (userInput == this.correctAnswerNO[0]) {
-                
-                score++;
-                console.log('correct');
-                console.log('Your current score is:' + score);
-                console.log('--------------------------------');
-                console.log('')
-                quiz.randomElement();
-    
-            } else if (userInput == this.correctAnswerNO[1]) {
-                console.log('incorrect, try again');
-                console.log('Your current score is:' + score);
-                console.log('--------------------------------');
-                console.log('');
-                quiz.randomElement();
-    
-            } else if (userInput == 'exit') {
-                console.log('Your final score is:' + score);
-                console.log('Game ended.');
-            } else {
-                console.log('Please submit an answer');
-            }
-        }
-    
-    var quiz = new Question(
-    
-        [   
-            'Is JS a good language?',
-            'Is JS fun?',
-            'Is earth flat?'
-        ],
-        [
-            [   
-                '0: It\'s very good!',
-                '1: There are better ones..'
-            ],
-            [   
-                '0: It\'s very fun!',
-                '1: It\'s hard!'
-            ],
-            [   
-                '0: No.',
-                '1: No.'
-            ]
-        ],
-        [
-            '0',
-            '1',
-        ]
-        
-        );
-    
-    quiz.randomElement();
 })();
+
